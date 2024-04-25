@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:valor_impact/views/sign_in_form.dart';
 
 import '../themes/theme.dart';
 
@@ -24,9 +25,8 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: AppTheme.themeData,
-      home: Scaffold(
+    return Scaffold(
+      body: Scaffold(
         body: Stack(
           children: [
             Positioned (
@@ -38,12 +38,8 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Qui êtes vous ?",
-                    style: TextStyle(
-                        fontFamily: 'Louis George Cafe',
-                        fontSize: 24,
-                        color: Colors.white
-                    ),
+                  Text("Qui êtes vous ?",
+                    style: AppStyles.textStyleBase,
                   ),
                   const SizedBox(height: 20),
                   Container(
@@ -52,11 +48,7 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
                     ),
                     child: DropdownMenu<RoleEnum>(
                       width: 400,
-                      textStyle: const TextStyle(
-                        fontFamily: 'Louis George Cafe',
-                        fontSize: 24,
-                        color: Color(0xff8E3DFF),
-                      ),
+                      textStyle: AppStyles.textStyleBaseViolet,
                       //initialSelection: RoleEnum.employe,
                         onSelected: (RoleEnum? role) {
                           setState(() {
@@ -71,11 +63,7 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
                                 label: role.role,
                                 labelWidget: Text(
                                   role.role,
-                                  style: const TextStyle(
-                                      fontFamily: 'Louis George Cafe',
-                                      fontSize: 24,
-                                      color: Color(0xff8E3DFF)
-                                  ),
+                                  style: AppStyles.textStyleBaseViolet,
                                 ),
                               );
                             }).toList(),
@@ -83,25 +71,17 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
                   ),
                   const SizedBox(height: 20),
                   selectedRole == null ?
-                    const Padding(
-                      padding: EdgeInsets.only(top: 100),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 100),
                       child: Text('BIENVENUE',
-                        style: TextStyle(
-                            fontFamily: 'Gobold',
-                            fontSize: 80,
-                            color: Colors.white
-                        ),
+                        style: AppStyles.textStyleTitre,
                       )
                     )
                   :
                   Column(
                     children: [
-                      const Text("Déjà un compte ?",
-                        style: TextStyle(
-                            fontFamily: 'Louis George Cafe',
-                            fontSize: 24,
-                            color: Colors.white
-                        ),
+                      Text("Déjà un compte ?",
+                        style: AppStyles.textStyleBase,
                       ),
                       const SizedBox(height: 20),
                       Row(
@@ -111,13 +91,15 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                             ),
-                            onPressed: () {},
-                            child: const Text("Créer un compte",
-                              style: TextStyle(
-                                  fontFamily: 'Louis George Cafe',
-                                  fontSize: 20,
-                                  color: Color(0xff8E3DFF)
-                              ),),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const SignInForm()),
+                              );
+                            },
+                            child: Text("Créer un compte",
+                              style: AppStyles.textStyleBaseViolet,
+                            ),
                           ),
                           const SizedBox(width: 20),
                           OutlinedButton(
@@ -129,19 +111,14 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
                               ),
                             ),
                             onPressed: () {},
-                            child: const Text("Se connecter",
-                              style: TextStyle(
-                                  fontFamily: 'Louis George Cafe',
-                                  fontSize: 20,
-                                  color: Colors.white
-                              ),),
+                            child: Text("Se connecter",
+                              style: AppStyles.textStyleBase,
+                            ),
                           ),
                         ],
                       )
                     ],
                   )
-
-
                 ],
               ),
             ),
