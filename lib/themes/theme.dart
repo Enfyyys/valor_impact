@@ -13,9 +13,21 @@ class AppStyles {
       color: Colors.white
   );
 
+  static TextStyle textStyleBase8 = const TextStyle(
+      fontFamily: 'Louis George Cafe',
+      fontSize: 8,
+      color: Colors.white
+  );
+
   static TextStyle textStyleBaseViolet = const TextStyle(
       fontFamily: 'Louis George Cafe',
       fontSize: 24,
+      color: Color(0xff8E3DFF)
+  );
+
+  static TextStyle textStyleBaseViolet16 = const TextStyle(
+      fontFamily: 'Louis George Cafe',
+      fontSize: 16,
       color: Color(0xff8E3DFF)
   );
 
