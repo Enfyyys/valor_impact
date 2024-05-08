@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:valor_impact/ui/screens/home.dart';
 
+import '../enums/role_enum.dart';
 import '../themes/theme.dart';
 
 class SignInForm extends StatefulWidget {
 
+  final RoleEnum role;
+
   @override
   State<SignInForm> createState() => _SignInForm();
 
-  const SignInForm({super.key});
+  const SignInForm({super.key, required this.role});
 }
 
 class _SignInForm extends State<SignInForm> {
@@ -31,70 +34,111 @@ class _SignInForm extends State<SignInForm> {
                 //key: _formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Code entreprise", style: AppStyles.textStyleBase16),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width - 50,
-                      child: TextFormField(
-                        style: AppStyles.textStyleBaseViolet16,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: "1234",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                    widget.role == RoleEnum.employe ?
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Code entreprise", style: AppStyles.textStyleBase16),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width - 50,
+                          child: TextFormField(
+                            style: AppStyles.textStyleBaseViolet16,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              hintText: "1234",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
+                    )
+                    :
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Numéro de SIRET", style: AppStyles.textStyleBase16),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width - 50,
+                          child: TextFormField(
+                            style: AppStyles.textStyleBaseViolet16,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              hintText: "12345678901234",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 20),
-                    Text("E-mail", style: AppStyles.textStyleBase16),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width - 50,
-                      child: TextFormField(
-                        style: AppStyles.textStyleBaseViolet16,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: "francoisgigaud@gmail.com",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("E-mail", style: AppStyles.textStyleBase16),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width - 50,
+                          child: TextFormField(
+                            style: AppStyles.textStyleBaseViolet16,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              hintText: "francoisgigaud@gmail.com",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                     const SizedBox(height: 20),
-                    Text("Mot de passe", style: AppStyles.textStyleBase16),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width - 50,
-                      child: TextFormField(
-                        style: AppStyles.textStyleBaseViolet16,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: ".......",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Mot de passe", style: AppStyles.textStyleBase16),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width - 50,
+                          child: TextFormField(
+                            style: AppStyles.textStyleBaseViolet16,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              hintText: ".......",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                     const SizedBox(height: 20),
-                    Text("Confirmation Mot de passe", style: AppStyles.textStyleBase16),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width - 50,
-                      child: TextFormField(
-                        style: AppStyles.textStyleBaseViolet16,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: ".......",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Confirmation Mot de passe", style: AppStyles.textStyleBase16),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width - 50,
+                          child: TextFormField(
+                            style: AppStyles.textStyleBaseViolet16,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              hintText: ".......",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                     const SizedBox(height: 20),
                     Stack(

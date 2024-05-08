@@ -17,9 +17,6 @@ class _BenefitList extends State<BenefitList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Liste des récompenses'),
-      ),
       body: BlocBuilder<BenefitCubit, List<Benefit>>(
         builder: (context, state) {
           return ListView.separated(

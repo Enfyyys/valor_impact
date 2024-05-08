@@ -14,9 +14,6 @@ class _AddTask extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Ajout d'une tâche"),
-      ),
       body: Container(
         margin: const EdgeInsets.all(10.0),
         child: Form(

@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:valor_impact/views/sign_in_form.dart';
 
+import '../enums/role_enum.dart';
 import '../themes/theme.dart';
 import 'form_login.dart';
 import 'formula_choice.dart';
-
-enum RoleEnum {
-  responsable('Responsable'),
-  employe('Employé');
-
-  const RoleEnum(this.role);
-  final String role;
-}
 
 class FormLoginChoice extends StatefulWidget {
   const FormLoginChoice({ super.key });
@@ -97,7 +90,7 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
                             selectedRole == RoleEnum.employe ?
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const SignInForm()),
+                              MaterialPageRoute(builder: (context) => const SignInForm(role: RoleEnum.employe,)),
                             )
                             :
                             Navigator.push(
@@ -137,9 +130,8 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
             ),
           ),
           Positioned (
-            left: 0,
-            top: 650,
-            child: Image.asset('assets/images/poigne.png', scale: 0.87,),
+            top: MediaQuery.of(context).size.height * 0.65,
+            child: Image.asset('assets/images/poigne.png', scale: 1,),
           ),
         ],
       ),
