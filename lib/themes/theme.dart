@@ -48,4 +48,9 @@ class AppStyles {
       fontSize: 24,
       color: Colors.white
   );
+  static TextStyle textStyleTitreViolet24 = const TextStyle(
+      fontFamily: 'Gobold',
+      fontSize: 24,
+      color: Color(0xff8E3DFF)
+  );
 }

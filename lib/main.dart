@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valor_impact/blocs/benefit_cubit.dart';
+import 'package:valor_impact/providers/role_provider.dart';
 import 'package:valor_impact/views/form_login_choice.dart';
 import 'blocs/task_cubit.dart';
+import 'package:provider/provider.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -42,7 +44,8 @@ void main() async {
             BlocProvider<BenefitCubit>(
               create: (_) => benefitCubit,
               child: const MyApp(),
-            )
+            ),
+            ChangeNotifierProvider(create: (_) => RoleProvider()),
           ],
           child: const MyApp())
 

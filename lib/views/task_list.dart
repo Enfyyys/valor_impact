@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valor_impact/blocs/task_cubit.dart';
 import 'package:valor_impact/themes/theme.dart';
 import 'package:valor_impact/views/add_task.dart';
+import 'package:valor_impact/views/profile.dart';
 
 import '../models/task.dart';
 
@@ -36,10 +37,14 @@ class _TaskList extends State<TaskList> {
                   width: 199,
                   height: 34,
                 ),
-                const Icon(
-                  Icons.account_circle_outlined,
-                  color: Colors.white,
-                  size: 33.0,
+                IconButton(
+                  icon: const Icon(Icons.account_circle_outlined, color: Colors.white, size: 33.0,),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Profile()),
+                    );
+                  },
                 ),
               ],
             ),
