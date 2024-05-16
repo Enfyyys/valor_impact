@@ -1,12 +1,13 @@
-import 'package:valor_impact/models/user.dart';
+
 
 class Task {
   final int idTask;
   final String taskDescription;
   final double moneyWorth;
-  final User? assignedTo;
+  //final User? assignedTo;
 
-  const Task(this.assignedTo, {required this.idTask, required this.taskDescription, required this.moneyWorth});
+  //const Task(this.assignedTo, {required this.idTask, required this.taskDescription, required this.moneyWorth});
+  const Task({required this.idTask, required this.taskDescription, required this.moneyWorth});
 
   Map<String, Object?> toMap() {
     return {
@@ -26,7 +27,6 @@ class Task {
     final String taskDescription = json['task_description'];
     final double moneyWorth = json['money_worth'];
     return Task(
-      null,
       idTask: idTask,
       taskDescription: taskDescription,
       moneyWorth: moneyWorth,
@@ -36,6 +36,5 @@ class Task {
   static List<Map<String, dynamic>> fromJsonList(List<dynamic> jsonList) {
     return jsonList.cast<Map<String, dynamic>>();
   }
-
 
 }

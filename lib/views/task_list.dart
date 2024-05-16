@@ -4,21 +4,25 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valor_impact/blocs/task_cubit.dart';
 import 'package:valor_impact/themes/theme.dart';
-import 'package:valor_impact/views/add_task.dart';
 import 'package:valor_impact/views/profile.dart';
+import 'package:provider/provider.dart';
 
+import '../enums/role_enum.dart';
 import '../models/task.dart';
+import '../providers/user_provider.dart';
 
 class TaskList extends StatefulWidget {
   @override
   State<TaskList> createState() => _TaskList();
 
-  const TaskList({Key? key}) : super(key: key);
+  const TaskList({super.key});
 }
 
 class _TaskList extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
+    final selectedRole =
+        Provider.of<UserProvider>(context, listen: false).selectedRole;
     return Scaffold(
       body: Column(
         children: [
@@ -37,14 +41,41 @@ class _TaskList extends State<TaskList> {
                   width: 199,
                   height: 34,
                 ),
-                IconButton(
-                  icon: const Icon(Icons.account_circle_outlined, color: Colors.white, size: 33.0,),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Profile()),
-                    );
-                  },
+                selectedRole == RoleEnum.responsable ?
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 2.0), // Contour blanc
+                  ),
+                  width: 50.0,
+                  height: 50.0,
+                  child: IconButton(
+                    icon: Image.asset('assets/images/responsable.png', scale: 3.0),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Profile()),
+                      );
+                    },
+                  ),
+                )
+                :
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 2.0), // Contour blanc
+                  ),
+                  width: 50.0,
+                  height: 50.0,
+                  child: IconButton(
+                    icon: Image.asset('assets/images/employe.png', scale: 3.0),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Profile()),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

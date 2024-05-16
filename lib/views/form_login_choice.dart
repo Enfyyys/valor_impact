@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:valor_impact/views/sign_in_form.dart';
 
 import '../enums/role_enum.dart';
-import '../providers/role_provider.dart';
+import '../providers/user_provider.dart';
 import '../themes/theme.dart';
 import 'form_login.dart';
 import 'formula_choice.dart';
@@ -89,7 +89,7 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
                             backgroundColor: Colors.white,
                           ),
                           onPressed: () {
-                            Provider.of<RoleProvider>(context, listen: false)
+                            Provider.of<UserProvider>(context, listen: false)
                                 .setSelectedRole(selectedRole!);
                             selectedRole == RoleEnum.employe ?
                             Navigator.push(

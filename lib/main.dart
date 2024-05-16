@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valor_impact/blocs/benefit_cubit.dart';
-import 'package:valor_impact/providers/role_provider.dart';
+import 'package:valor_impact/blocs/user_cubit.dart';
+import 'package:valor_impact/providers/database_provider.dart';
+import 'package:valor_impact/providers/user_provider.dart';
 import 'package:valor_impact/views/form_login_choice.dart';
 import 'blocs/task_cubit.dart';
 import 'package:provider/provider.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 
 
 void main() async {
@@ -28,11 +31,13 @@ void main() async {
 
   final TaskCubit taskCubit = TaskCubit();
   final BenefitCubit benefitCubit = BenefitCubit();
+  final UserCubit userCubit = UserCubit();
 
-  //await DatabaseProvider.initializeDatabase();
+  await DatabaseProvider.initializeDatabase();
 
-  //taskCubit.loadTasks();
-  //benefitCubit.loadBenefits();
+  taskCubit.loadTasks();
+  benefitCubit.loadBenefits();
+  userCubit.loadUsers();
 
   runApp(
       MultiBlocProvider(
@@ -45,7 +50,11 @@ void main() async {
               create: (_) => benefitCubit,
               child: const MyApp(),
             ),
-            ChangeNotifierProvider(create: (_) => RoleProvider()),
+            BlocProvider<UserCubit>(
+              create: (_) => userCubit,
+              child: const MyApp(),
+            ),
+            ChangeNotifierProvider(create: (_) => UserProvider()),
           ],
           child: const MyApp())
 

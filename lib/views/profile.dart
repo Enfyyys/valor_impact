@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:valor_impact/blocs/task_cubit.dart';
+import 'package:valor_impact/enums/role_enum.dart';
 import 'package:valor_impact/themes/theme.dart';
 import 'package:provider/provider.dart';
 
-import '../models/task.dart';
-import '../providers/role_provider.dart';
+import '../providers/user_provider.dart';
 import '../ui/screens/home.dart';
 
 class Profile extends StatefulWidget {
@@ -19,7 +17,7 @@ class _Profile extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     final selectedRole =
-        Provider.of<RoleProvider>(context, listen: false).selectedRole;
+        Provider.of<UserProvider>(context, listen: false).selectedRole;
     return Scaffold(
       body: Column(
         children: [
@@ -60,7 +58,26 @@ class _Profile extends State<Profile> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.account_circle_outlined, color: Colors.white, size: 250.0,),
+                  selectedRole == RoleEnum.responsable ?
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 3.0), // Contour blanc
+                    ),
+                    width: 180.0,
+                    height: 180.0,
+                    child: Image.asset('assets/images/responsable.png'),
+                  )
+                  :
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 3.0), // Contour blanc
+                    ),
+                    width: 180.0,
+                    height: 180.0,
+                    child: Image.asset('assets/images/employe.png'),
+                  ),
                   Text(selectedRole.role, style: AppStyles.textStyleBase16,),
                   Text("bababoyy", style: AppStyles.textStyleBase,),
                   const SizedBox(height: 30),
