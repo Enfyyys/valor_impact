@@ -79,7 +79,7 @@ class _Profile extends State<Profile> {
                     child: Image.asset('assets/images/employe.png'),
                   ),
                   Text(selectedRole.role, style: AppStyles.textStyleBase16,),
-                  Text("bababoyy", style: AppStyles.textStyleBase,),
+                  Text("Éric", style: AppStyles.textStyleBase,),
                   const SizedBox(height: 30),
                   Container(
                     width: MediaQuery.of(context).size.width,

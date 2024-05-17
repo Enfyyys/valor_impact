@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valor_impact/enums/role_enum.dart';
-import 'package:valor_impact/providers/database_provider.dart';
 
 import '../models/user.dart';
 
@@ -10,9 +9,9 @@ class UserCubit extends Cubit<List<User>> {
   UserCubit() : super([]);
 
   Future<void> loadUsers() async {
-    final db = DatabaseProvider.getDatabase();
+    /*final db = DatabaseProvider.getDatabase();
 
-    /*List<Map<String, dynamic>> usersMap = await db.query('users');
+    List<Map<String, dynamic>> usersMap = await db.query('users');
 
     emit(
       [

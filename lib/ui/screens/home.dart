@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:valor_impact/views/benefit_list.dart';
+import 'package:valor_impact/views/profile.dart';
 import 'package:valor_impact/views/task_list.dart';
+import 'package:valor_impact/views/welcome.dart';
 
 class Home extends StatefulWidget {
 
@@ -15,8 +17,10 @@ class _Home extends State<Home> {
 
   int _selectedScreenIndex = 0;
   final List _screens = [
+    {"screen": const Welcome()},
+    {"screen": const BenefitList()},
     {"screen": const TaskList()},
-    {"screen": const BenefitList()}
+    {"screen": const Profile()},
   ];
 
   void _selectScreen(int index) {
@@ -32,14 +36,22 @@ class _Home extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedScreenIndex,
         onTap: _selectScreen,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Tâches',
+            icon: Image.asset('assets/images/maison.png',),
+            label: "",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.cake),
-            label: 'Récompenses',
+            icon: Image.asset('assets/images/benefice.png',),
+            label: "",
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/images/tache.png',),
+            label: "",
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/images/profil.png',),
+            label: "",
           ),
         ],
       ),

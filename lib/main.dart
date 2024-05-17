@@ -39,6 +39,8 @@ void main() async {
   benefitCubit.loadBenefits();
   userCubit.loadUsers();
 
+  print(taskCubit.getTasks());
+
   runApp(
       MultiBlocProvider(
           providers: [
@@ -69,7 +71,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Valor Impact',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xff8E3DFF),
       ),

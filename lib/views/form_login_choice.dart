@@ -101,7 +101,6 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
                               context,
                               MaterialPageRoute(builder: (context) => const FormulaChoice()),
                             );
-
                           },
                           child: Text("Créer un compte",
                             style: AppStyles.textStyleBaseViolet,
@@ -117,6 +116,8 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
                             ),
                           ),
                           onPressed: () {
+                            Provider.of<UserProvider>(context, listen: false)
+                                .setSelectedRole(selectedRole!);
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => const FormLogin()),
@@ -135,7 +136,7 @@ class _FormLoginChoiceState extends State<FormLoginChoice> {
           ),
           Positioned (
             top: MediaQuery.of(context).size.height * 0.65,
-            child: Image.asset('assets/images/poigne.png', scale: 1,),
+            child: Image.asset('assets/images/poigne.png', scale: 0.89,),
           ),
         ],
       ),
