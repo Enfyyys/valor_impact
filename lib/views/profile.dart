@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:valor_impact/enums/role_enum.dart';
+import 'package:valor_impact/enums/task_type_enum.dart';
 import 'package:valor_impact/themes/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -88,7 +89,7 @@ class _Profile extends State<Profile> {
                       color: Colors.white
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -122,7 +123,80 @@ class _Profile extends State<Profile> {
                         )
                       ],
                     ),
-                  )
+                  ),
+                  const SizedBox(height: 20.0,),
+                  Container(
+                    margin: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: 3),
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: TaskTypeEnum.environnement.color,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.asset(TaskTypeEnum.environnement.url),
+                        Text("Total des tâches accomplis \n(Environnement)", style: AppStyles.textStyleBase16,),
+                        Container(
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: const Color(0xffFFFFFF).withOpacity(0.7),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text("46", style: AppStyles.textStyleTitreTransparentVert,),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: 3),
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: TaskTypeEnum.economie.color,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.asset(TaskTypeEnum.economie.url),
+                        Text("Total des tâches accomplis \n(Économie)", style: AppStyles.textStyleBase16,),
+                        Container(
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: const Color(0xffFFFFFF).withOpacity(0.7),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text("46", style: AppStyles.textStyleTitreTransparentBleu,),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: 3),
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: TaskTypeEnum.societe.color,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.asset(TaskTypeEnum.societe.url),
+                        Text("Total des tâches accomplis \n(Société)", style: AppStyles.textStyleBase16,),
+                        Container(
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: const Color(0xffFFFFFF).withOpacity(0.7),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text("46", style: AppStyles.textStyleTitreTransparentRouge,),
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

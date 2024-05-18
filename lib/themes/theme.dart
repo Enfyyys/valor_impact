@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../enums/task_type_enum.dart';
+
 class AppStyles {
 
   static TextStyle textStyleBase = const TextStyle(
@@ -48,9 +50,28 @@ class AppStyles {
       fontSize: 24,
       color: Colors.white
   );
+
   static TextStyle textStyleTitreViolet24 = const TextStyle(
       fontFamily: 'Gobold',
       fontSize: 24,
       color: Color(0xff8E3DFF)
+  );
+
+  static TextStyle textStyleTitreTransparentVert = TextStyle(
+      fontFamily: 'Gobold',
+      fontSize: 16,
+      color: TaskTypeEnum.environnement.color
+  );
+
+  static TextStyle textStyleTitreTransparentBleu = TextStyle(
+      fontFamily: 'Gobold',
+      fontSize: 16,
+      color: TaskTypeEnum.economie.color
+  );
+
+  static TextStyle textStyleTitreTransparentRouge = TextStyle(
+      fontFamily: 'Gobold',
+      fontSize: 16,
+      color: TaskTypeEnum.societe.color
   );
 }

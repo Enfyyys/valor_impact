@@ -195,7 +195,7 @@ class _Welcome extends State<Welcome> {
                                 color: task.taskType.color,
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -205,11 +205,17 @@ class _Welcome extends State<Welcome> {
                                         child: Text(task.taskDescription, style: AppStyles.textStyleBase16,),
                                       ),
                                       Container(
+                                        padding: const EdgeInsets.all(10.0),
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(20.0),
+                                          borderRadius: BorderRadius.circular(10.0),
                                           color: task.taskType.subColor,
                                         ),
-                                        child: const Text('Temps restant: 7 jours'),
+                                        child: Row(
+                                          children: [
+                                            Image.asset('assets/images/temps.png'),
+                                            Text('Temps restant: 7 jours', style: AppStyles.textStyleBase16,),
+                                          ],
+                                        ),
                                       )
                                     ],
                                   ),
@@ -219,11 +225,17 @@ class _Welcome extends State<Welcome> {
                                       Image.asset(task.taskType.url, scale: 0.5,),
                                       Text(task.taskType.type, style: AppStyles.textStyleBase8,),
                                       Container(
+                                        padding: EdgeInsets.all(10.0),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(20.0),
                                           color: task.taskType.subColor,
                                         ),
-                                        child: Text(task.moneyWorth.toString()),
+                                        child: Row(
+                                          children: [
+                                            Image.asset('assets/images/monnaie.png', scale: 1.5,),
+                                            Text(task.moneyWorth.toString(), style: AppStyles.textStyleBase16,),
+                                          ],
+                                        ),
                                       )
                                     ],
                                   ),
