@@ -47,13 +47,11 @@ class TaskCubit extends Cubit<List<Task>> {
           taskDescription: taskMap['task_description'] as String,
           moneyWorth: taskMap['money_worth'] as double,
           taskType: taskMap['task_type'] != null
-              ? TaskTypeEnum.values.firstWhere(
-                (type) => type.toString() == 'TaskTypeEnum.${taskMap['task_type']}',
-            orElse: () => TaskTypeEnum.environnement,
-          )
-              : TaskTypeEnum.environnement,
-          startDate: taskMap['start_date'] as DateTime,
-          endDate: taskMap['end_date'] as DateTime,
+              ? taskMap['task_type'] as TaskTypeEnum : TaskTypeEnum.environnement,
+          startDate: taskMap['start_date'] != null
+              ? taskMap['start_date'] as DateTime : DateTime.utc(1989, 11, 9),
+          endDate: taskMap['end_date'] != null
+              ? taskMap['end_date'] as DateTime : DateTime.utc(2089, 11, 9),
         ),
     ];
   }

@@ -9,9 +9,22 @@ class AppStyles {
     fontSize: 24,
     color: Colors.white
   );
+
+  static TextStyle textStyleBase24 = const TextStyle(
+      fontFamily: 'Louis George Cafe',
+      fontSize: 24,
+      color: Colors.white
+  );
+
   static TextStyle textStyleBase16 = const TextStyle(
       fontFamily: 'Louis George Cafe',
       fontSize: 16,
+      color: Colors.white
+  );
+
+  static TextStyle textStyleBase12 = const TextStyle(
+      fontFamily: 'Louis George Cafe',
+      fontSize: 12,
       color: Colors.white
   );
 
@@ -45,6 +58,12 @@ class AppStyles {
       color: Colors.white
   );
 
+  static TextStyle textStyleTitre32 = const TextStyle(
+      fontFamily: 'Gobold',
+      fontSize: 32,
+      color: Colors.white
+  );
+
   static TextStyle textStyleTitre24 = const TextStyle(
       fontFamily: 'Gobold',
       fontSize: 24,
@@ -72,6 +91,24 @@ class AppStyles {
   static TextStyle textStyleTitreTransparentRouge = TextStyle(
       fontFamily: 'Gobold',
       fontSize: 16,
+      color: TaskTypeEnum.societe.color
+  );
+
+  static TextStyle textStyleTransparentVert12 = TextStyle(
+      fontFamily: 'Louis George Cafe',
+      fontSize: 12,
+      color: TaskTypeEnum.environnement.color
+  );
+
+  static TextStyle textStyleTransparentBleu12 = TextStyle(
+      fontFamily: 'Louis George Cafe',
+      fontSize: 12,
+      color: TaskTypeEnum.economie.color
+  );
+
+  static TextStyle textStyleTransparentRouge12 = TextStyle(
+      fontFamily: 'Louis George Cafe',
+      fontSize: 12,
       color: TaskTypeEnum.societe.color
   );
 }

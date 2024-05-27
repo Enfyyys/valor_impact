@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valor_impact/blocs/task_cubit.dart';
 import 'package:valor_impact/themes/theme.dart';
+import 'package:valor_impact/views/add_task.dart';
 import 'package:valor_impact/views/profile.dart';
 import 'package:provider/provider.dart';
 
@@ -157,7 +158,12 @@ class _Welcome extends State<Welcome> {
                               height: 33,
                               width: 140,
                               child: ElevatedButton.icon(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const AddTask()),
+                                  );
+                                },
                                 icon: const Icon(Icons.add),
                                 label: Text(
                                   "Ajouter une tâche",
@@ -225,7 +231,7 @@ class _Welcome extends State<Welcome> {
                                       Image.asset(task.taskType.url, scale: 0.5,),
                                       Text(task.taskType.type, style: AppStyles.textStyleBase8,),
                                       Container(
-                                        padding: EdgeInsets.all(10.0),
+                                        padding: const EdgeInsets.all(10.0),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(20.0),
                                           color: task.taskType.subColor,
