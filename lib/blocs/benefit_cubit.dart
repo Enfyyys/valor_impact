@@ -7,9 +7,9 @@ class BenefitCubit extends Cubit<List<Benefit>> {
 
   Future<void> loadBenefits() async {
     emit(const [
-      Benefit(idBenefit: 1, benefitDescription: "toto", moneyCost: 20),
-      Benefit(idBenefit: 2, benefitDescription: "tata", moneyCost: 40),
-      Benefit(idBenefit: 3, benefitDescription: "titi", moneyCost: 15),
+      Benefit(idBenefit: 1, benefitDescription: "1h de yoga", moneyCost: 300, imageUrl: 'assets/images/meditation.png',),
+      Benefit(idBenefit: 2, benefitDescription: "Soirée cinéma", moneyCost: 500, imageUrl: 'assets/images/cinema.png',),
+      Benefit(idBenefit: 3, benefitDescription: "Massage de 30min", moneyCost: 300, imageUrl: 'assets/images/massage.png',)
     ]);
   }
 

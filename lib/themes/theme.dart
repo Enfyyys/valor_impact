@@ -22,10 +22,22 @@ class AppStyles {
       color: Colors.white
   );
 
+  static TextStyle textStyleGris16 = TextStyle(
+      fontFamily: 'Louis George Cafe',
+      fontSize: 16,
+      color: Colors.white.withOpacity(0.5)
+  );
+
   static TextStyle textStyleBase12 = const TextStyle(
       fontFamily: 'Louis George Cafe',
       fontSize: 12,
       color: Colors.white
+  );
+
+  static TextStyle textStyleBaseEconomie12 = TextStyle(
+      fontFamily: 'Louis George Cafe',
+      fontSize: 12,
+      color: TaskTypeEnum.economie.color
   );
 
   static TextStyle textStyleBase8 = const TextStyle(

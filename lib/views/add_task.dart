@@ -6,6 +6,7 @@ import 'package:valor_impact/blocs/task_cubit.dart';
 import 'package:valor_impact/enums/task_type_enum.dart';
 import 'package:valor_impact/themes/theme.dart';
 import 'package:valor_impact/views/add_task.dart';
+import 'package:valor_impact/views/create_task.dart';
 import 'package:valor_impact/views/profile.dart';
 import 'package:provider/provider.dart';
 
@@ -68,7 +69,12 @@ class _AddTask extends State<AddTask> {
                   Text("AJOUTER UNE TÂCHE", style: AppStyles.textStyleTitre32,),
                   const SizedBox(height: 20,),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const CreateTask()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFA565FF),
                       shape: RoundedRectangleBorder(

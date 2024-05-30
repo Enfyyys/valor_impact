@@ -219,7 +219,7 @@ class _Welcome extends State<Welcome> {
                                         child: Row(
                                           children: [
                                             Image.asset('assets/images/temps.png'),
-                                            Text('Temps restant: 7 jours', style: AppStyles.textStyleBase16,),
+                                            Text('Temps restant: ${task.endDate.difference(DateTime.now()).inDays} jours', style: AppStyles.textStyleBase16,),
                                           ],
                                         ),
                                       )
