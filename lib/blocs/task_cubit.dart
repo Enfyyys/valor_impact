@@ -35,25 +35,8 @@ class TaskCubit extends Cubit<List<Task>> {
     emit([...state, task]);
   }
 
-  Future<List<Task>> getTasks() async {
-    final db = DatabaseProvider.getDatabase();
-
-    final List<Map<String, Object?>> taskMaps = await db.query('tasks');
-
-    return [
-      for (final taskMap in taskMaps)
-        Task(
-          idTask: taskMap['id_task'] as int,
-          taskDescription: taskMap['task_description'] as String,
-          moneyWorth: taskMap['money_worth'] as double,
-          taskType: taskMap['task_type'] != null
-              ? taskMap['task_type'] as TaskTypeEnum : TaskTypeEnum.environnement,
-          startDate: taskMap['start_date'] != null
-              ? taskMap['start_date'] as DateTime : DateTime.utc(1989, 11, 9),
-          endDate: taskMap['end_date'] != null
-              ? taskMap['end_date'] as DateTime : DateTime.utc(2089, 11, 9),
-        ),
-    ];
+  List<Task> getTasks() {
+    return state;
   }
 
 }

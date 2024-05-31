@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valor_impact/blocs/assigned_to_cubit.dart';
 import 'package:valor_impact/blocs/benefit_cubit.dart';
 import 'package:valor_impact/blocs/user_cubit.dart';
 import 'package:valor_impact/providers/database_provider.dart';
@@ -8,38 +9,25 @@ import 'package:valor_impact/views/form_login_choice.dart';
 import 'blocs/task_cubit.dart';
 import 'package:provider/provider.dart';
 
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-
+import 'models/task.dart';
 
 void main() async {
 
-  Future fetchData() async {
-    final response = await http.get(Uri.parse('http://192.168.94.60:3000/tasks'));
-    if (response.statusCode == 200) {
-      List<dynamic> data = json.decode(response.body);
-      print(data);
-    } else {
-      print('Erreur lors de la récupération des données.');
-    }
-  }
-
-  //fetchData();
-
   WidgetsFlutterBinding.ensureInitialized();
+
+  await DatabaseProvider.initializeDatabase();
 
   final TaskCubit taskCubit = TaskCubit();
   final BenefitCubit benefitCubit = BenefitCubit();
   final UserCubit userCubit = UserCubit();
 
-  await DatabaseProvider.initializeDatabase();
-
   taskCubit.loadTasks();
+  final List<Task> tasks = taskCubit.getTasks();
+  final AssignedToCubit assignedToCubit = AssignedToCubit(tasks: tasks);
+
   benefitCubit.loadBenefits();
   userCubit.loadUsers();
-
-  print(taskCubit.getTasks());
+  assignedToCubit.loadAssignedTo();
 
   runApp(
       MultiBlocProvider(
@@ -54,6 +42,10 @@ void main() async {
             ),
             BlocProvider<UserCubit>(
               create: (_) => userCubit,
+              child: const MyApp(),
+            ),
+            BlocProvider<AssignedToCubit>(
+              create: (_) => assignedToCubit,
               child: const MyApp(),
             ),
             ChangeNotifierProvider(create: (_) => UserProvider()),

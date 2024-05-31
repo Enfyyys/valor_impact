@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valor_impact/blocs/task_cubit.dart';
 import 'package:valor_impact/themes/theme.dart';
@@ -181,7 +179,7 @@ class _TaskList extends State<TaskList> {
                     builder: (context, state) {
                       return ListView.separated(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: state.length,
                         itemBuilder: (BuildContext context, int index) {
                           final Task task = state[index];

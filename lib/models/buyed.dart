@@ -13,7 +13,7 @@ class Buyed {
     return {
       'id_user': idUser,
       'id_benefit': idBenefit,
-      'buyedDate': buyedDate,
+      'buyed_date': buyedDate,
     };
   }
 }

@@ -1,16 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:valor_impact/blocs/task_cubit.dart';
 import 'package:valor_impact/enums/task_type_enum.dart';
 import 'package:valor_impact/themes/theme.dart';
 import 'package:valor_impact/views/add_task.dart';
-import 'package:valor_impact/views/profile.dart';
 
-import '../enums/role_enum.dart';
 import '../models/task.dart';
-import '../providers/user_provider.dart';
 import '../ui/screens/home.dart';
 
 class CreateTask extends StatefulWidget {
@@ -39,7 +34,7 @@ class _CreateTask extends State<CreateTask> {
 
     if (title.isEmpty || taskType == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Veuillez remplir tous les champs')),
+        const SnackBar(content: Text('Veuillez remplir tous les champs')),
       );
       return;
     }
@@ -50,7 +45,7 @@ class _CreateTask extends State<CreateTask> {
       moneyWorth: reward,
       taskType: taskType,
       startDate: DateTime.now(),
-      endDate: DateTime.now().add(Duration(days: 30)),
+      endDate: DateTime.now().add(const Duration(days: 30)),
     );
 
     context.read<TaskCubit>().addTask(task);
@@ -63,8 +58,6 @@ class _CreateTask extends State<CreateTask> {
 
   @override
   Widget build(BuildContext context) {
-    final selectedRole =
-        Provider.of<UserProvider>(context, listen: false).selectedRole;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

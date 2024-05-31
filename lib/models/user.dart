@@ -6,7 +6,7 @@ class User {
   final String password;
   final double moneyCount;
   final RoleEnum role;
-  //final int idTeam;
+  final int idTeam;
 
   const User({
     required this.idUser,
@@ -14,7 +14,7 @@ class User {
     required this.password,
     required this.moneyCount,
     required this.role,
-    //required this.idTeam,
+    required this.idTeam,
   });
 
   Map<String, dynamic> toMap() {
@@ -24,7 +24,7 @@ class User {
       'password': password,
       'money_count': moneyCount,
       'role': role,
-      //'id_team': idTeam,
+      'id_team': idTeam,
     };
   }
 }

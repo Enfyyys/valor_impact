@@ -1,19 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:valor_impact/blocs/task_cubit.dart';
 import 'package:valor_impact/enums/task_type_enum.dart';
 import 'package:valor_impact/themes/theme.dart';
-import 'package:valor_impact/views/add_task.dart';
-import 'package:valor_impact/views/profile.dart';
-import 'package:provider/provider.dart';
 
 import '../blocs/benefit_cubit.dart';
-import '../enums/role_enum.dart';
 import '../models/benefit.dart';
-import '../models/task.dart';
-import '../providers/user_provider.dart';
 import '../ui/screens/home.dart';
 
 class BenefitList extends StatefulWidget {
@@ -26,8 +17,6 @@ class BenefitList extends StatefulWidget {
 class _BenefitList extends State<BenefitList> {
   @override
   Widget build(BuildContext context) {
-    final selectedRole =
-        Provider.of<UserProvider>(context, listen: false).selectedRole;
     return Scaffold(
       body: Column(
         children: [

@@ -1,7 +1,9 @@
+import 'package:valor_impact/enums/formula_enum.dart';
+
 class Team {
   final int idTeam;
   final String teamName;
-  final String formulaSelected;
+  final FormulaEnum formulaSelected;
 
   const Team({
     required this.idTeam,

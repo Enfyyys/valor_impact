@@ -4,7 +4,8 @@ import 'package:valor_impact/enums/task_type_enum.dart';
 import 'package:valor_impact/themes/theme.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/user_provider.dart';
+import '../blocs/assigned_to_cubit.dart';
+import '../blocs/user_cubit.dart';
 import '../ui/screens/home.dart';
 
 class Profile extends StatefulWidget {
@@ -17,8 +18,8 @@ class Profile extends StatefulWidget {
 class _Profile extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    final selectedRole =
-        Provider.of<UserProvider>(context, listen: false).selectedRole;
+    final currentUser = context.read<UserCubit>().currentUser;
+    final assignedToCubit = context.read<AssignedToCubit>();
     return Scaffold(
       body: Column(
         children: [
@@ -59,7 +60,7 @@ class _Profile extends State<Profile> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  selectedRole == RoleEnum.responsable ?
+                  currentUser?.role == RoleEnum.responsable ?
                   Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -79,8 +80,8 @@ class _Profile extends State<Profile> {
                     height: 180.0,
                     child: Image.asset('assets/images/employe.png'),
                   ),
-                  Text(selectedRole.role, style: AppStyles.textStyleBase16,),
-                  Text("Éric", style: AppStyles.textStyleBase,),
+                  Text(currentUser!.role.role, style: AppStyles.textStyleBase16,),
+                  Text(currentUser.username, style: AppStyles.textStyleBase,),
                   const SizedBox(height: 30),
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -98,7 +99,7 @@ class _Profile extends State<Profile> {
                             const SizedBox(height: 30),
                             Text("Nombre de tâches complétés", style: AppStyles.textStyleBaseViolet8,),
                             const SizedBox(height: 30),
-                            Text("35", style: AppStyles.textStyleTitreViolet24,)
+                            Text(assignedToCubit.getFinishedTasksByUser(currentUser.idUser).length.toString(), style: AppStyles.textStyleTitreViolet24,)
                           ],
                         ),
                         Column(
@@ -108,7 +109,7 @@ class _Profile extends State<Profile> {
                             const SizedBox(height: 30),
                             Text("Nombre de tâches en cours", style: AppStyles.textStyleBaseViolet8,),
                             const SizedBox(height: 30),
-                            Text("3", style: AppStyles.textStyleTitreViolet24,)
+                            Text(assignedToCubit.getUnfinishedTasksByUser(currentUser.idUser).length.toString(), style: AppStyles.textStyleTitreViolet24,)
                           ],
                         ),
                         Column(
@@ -118,7 +119,7 @@ class _Profile extends State<Profile> {
                             const SizedBox(height: 30),
                             Text("Quantité de monnaie gagnée", style: AppStyles.textStyleBaseViolet8,),
                             const SizedBox(height: 30),
-                            Text("500", style: AppStyles.textStyleTitreViolet24,)
+                            Text(assignedToCubit.getTotalMoneyFinished(currentUser.idUser).toString(), style: AppStyles.textStyleTitreViolet24,)
                           ],
                         )
                       ],
@@ -144,7 +145,7 @@ class _Profile extends State<Profile> {
                             color: const Color(0xffFFFFFF).withOpacity(0.7),
                             shape: BoxShape.circle,
                           ),
-                          child: Text("46", style: AppStyles.textStyleTitreTransparentVert,),
+                          child: Text(assignedToCubit.getFinishedTasksByTypeAndUser(currentUser.idUser, TaskTypeEnum.environnement).length.toString(), style: AppStyles.textStyleTitreTransparentVert,),
                         )
                       ],
                     ),
@@ -168,7 +169,7 @@ class _Profile extends State<Profile> {
                             color: const Color(0xffFFFFFF).withOpacity(0.7),
                             shape: BoxShape.circle,
                           ),
-                          child: Text("46", style: AppStyles.textStyleTitreTransparentBleu,),
+                          child: Text(assignedToCubit.getFinishedTasksByTypeAndUser(currentUser.idUser, TaskTypeEnum.economie).length.toString(), style: AppStyles.textStyleTitreTransparentBleu,),
                         )
                       ],
                     ),
@@ -192,7 +193,7 @@ class _Profile extends State<Profile> {
                             color: const Color(0xffFFFFFF).withOpacity(0.7),
                             shape: BoxShape.circle,
                           ),
-                          child: Text("46", style: AppStyles.textStyleTitreTransparentRouge,),
+                          child: Text(assignedToCubit.getFinishedTasksByTypeAndUser(currentUser.idUser, TaskTypeEnum.societe).length.toString(), style: AppStyles.textStyleTitreTransparentRouge,),
                         )
                       ],
                     ),

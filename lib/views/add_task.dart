@@ -1,18 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valor_impact/blocs/task_cubit.dart';
 import 'package:valor_impact/enums/task_type_enum.dart';
 import 'package:valor_impact/themes/theme.dart';
-import 'package:valor_impact/views/add_task.dart';
 import 'package:valor_impact/views/create_task.dart';
-import 'package:valor_impact/views/profile.dart';
-import 'package:provider/provider.dart';
 
-import '../enums/role_enum.dart';
 import '../models/task.dart';
-import '../providers/user_provider.dart';
 import '../ui/screens/home.dart';
 
 class AddTask extends StatefulWidget {
@@ -23,10 +16,10 @@ class AddTask extends StatefulWidget {
 }
 
 class _AddTask extends State<AddTask> {
+  TaskTypeEnum? _selectedTaskType;
   @override
   Widget build(BuildContext context) {
-    final selectedRole =
-        Provider.of<UserProvider>(context, listen: false).selectedRole;
+    //final TaskTypeEnum? taskType = _selectedTaskType;
     return Scaffold(
       body: Column(
         children: [
@@ -110,7 +103,11 @@ class _AddTask extends State<AddTask> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            _selectedTaskType = TaskTypeEnum.environnement;
+                          });
+                        },
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(130.0, 36.0),
                           backgroundColor: TaskTypeEnum.environnement.color,
@@ -122,7 +119,11 @@ class _AddTask extends State<AddTask> {
                         child: Text(TaskTypeEnum.environnement.type, style: AppStyles.textStyleBase12),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            _selectedTaskType = TaskTypeEnum.societe;
+                          });
+                        },
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(130.0, 36.0),
                           backgroundColor: TaskTypeEnum.societe.color,
@@ -134,7 +135,11 @@ class _AddTask extends State<AddTask> {
                         child: Text(TaskTypeEnum.societe.type, style: AppStyles.textStyleBase12),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            _selectedTaskType = TaskTypeEnum.economie;
+                          });
+                        },
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(130.0, 36.0),
                           backgroundColor: TaskTypeEnum.economie.color,
@@ -156,12 +161,13 @@ class _AddTask extends State<AddTask> {
                   ),
                   BlocBuilder<TaskCubit, List<Task>>(
                     builder: (context, state) {
+                      final filteredTasks = state.where((task) => _selectedTaskType == null || task.taskType == _selectedTaskType).toList();
                       return ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: state.length,
+                        itemCount: filteredTasks.length,
                         itemBuilder: (BuildContext context, int index) {
-                          final Task task = state[index];
+                          final Task task = filteredTasks[index];
                           return Container(
                               margin: const EdgeInsets.all(20.0),
                               width: 390,
