@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valor_impact/blocs/assigned_to_cubit.dart';
 import 'package:valor_impact/blocs/task_cubit.dart';
 import 'package:valor_impact/enums/task_type_enum.dart';
 import 'package:valor_impact/themes/theme.dart';
 import 'package:valor_impact/views/create_task.dart';
+import 'package:valor_impact/views/update_task.dart';
 
+import '../blocs/user_cubit.dart';
+import '../enums/role_enum.dart';
 import '../models/task.dart';
 import '../ui/screens/home.dart';
 
@@ -19,7 +23,8 @@ class _AddTask extends State<AddTask> {
   TaskTypeEnum? _selectedTaskType;
   @override
   Widget build(BuildContext context) {
-    //final TaskTypeEnum? taskType = _selectedTaskType;
+    final currentUser = context.read<UserCubit>().currentUser;
+    final assignedToCubit = context.read<AssignedToCubit>();
     return Scaffold(
       body: Column(
         children: [
@@ -59,45 +64,47 @@ class _AddTask extends State<AddTask> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("AJOUTER UNE TÂCHE", style: AppStyles.textStyleTitre32,),
-                  const SizedBox(height: 20,),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const CreateTask()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFA565FF),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 12.0),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.add, color: Colors.white, size: 35,),
-                        const SizedBox(width: 8.0),
-                        Text(
-                          'Créer une tâche',
-                          style: AppStyles.textStyleBase24
+                  if (currentUser?.role == RoleEnum.responsable) ...[
+                    Text("AJOUTER UNE TÂCHE", style: AppStyles.textStyleTitre32,),
+                    const SizedBox(height: 20,),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const CreateTask()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFA565FF),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                      ],
+                        padding: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 12.0),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.add, color: Colors.white, size: 35,),
+                          const SizedBox(width: 8.0),
+                          Text(
+                            'Créer une tâche',
+                            style: AppStyles.textStyleBase24
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20,),
-                  Text('OU', style: AppStyles.textStyleBase24,),
-                  const SizedBox(height: 20,),
-                  Text('Choisissez une tâche à modifier !', style: AppStyles.textStyleBase24,),
-                  const SizedBox(height: 20,),
-                  Container(
-                    height: 5,
-                    decoration: const BoxDecoration(
-                        color: Colors.white
+                    const SizedBox(height: 20,),
+                    Text('OU', style: AppStyles.textStyleBase24,),
+                    const SizedBox(height: 20,),
+                    Text('Choisissez une tâche à modifier !', style: AppStyles.textStyleBase24,),
+                    const SizedBox(height: 20,),
+                    Container(
+                      height: 5,
+                      decoration: const BoxDecoration(
+                          color: Colors.white
+                      ),
                     ),
-                  ),
+                  ],
                   const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -207,30 +214,64 @@ class _AddTask extends State<AddTask> {
                                     children: [
                                       Image.asset(task.taskType.url, scale: 0.5,),
                                       Text(task.taskType.type, style: AppStyles.textStyleBase8,),
-                                      SizedBox(
-                                        child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(8.0),
+                                      if (currentUser?.role == RoleEnum.responsable) ...[
+                                        SizedBox(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(8.0),
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(builder: (context) => UpdateTask(task: task,)),
+                                              );
+                                            },
+                                            child: Row(
+                                              children: [
+                                                Image.asset("assets/images/edit.png", color: task.taskType.color,),
+                                                const SizedBox(width: 5.0,),
+                                                Text(
+                                                  "Modifier",
+                                                  style: TextStyle(
+                                                      fontFamily: 'Louis George Cafe',
+                                                      fontSize: 12,
+                                                      color: task.taskType.color
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                          onPressed: () {},
-                                          child: Row(
-                                            children: [
-                                              Image.asset("assets/images/edit.png", color: task.taskType.color,),
-                                              const SizedBox(width: 5.0,),
-                                              Text(
-                                                "Modifier",
-                                                style: TextStyle(
-                                                    fontFamily: 'Louis George Cafe',
-                                                    fontSize: 12,
-                                                    color: task.taskType.color
-                                                ),
+                                        ),
+                                      ] else ...[
+                                        SizedBox(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(8.0),
                                               ),
-                                            ],
+                                            ),
+                                            onPressed: () {
+                                              assignedToCubit.assignTask(currentUser!.idUser, task.idTask);
+                                            },
+                                            child: Row(
+                                              children: [
+                                                Image.asset("assets/images/edit.png", color: task.taskType.color,),
+                                                const SizedBox(width: 5.0,),
+                                                Text(
+                                                  "Se l'assigner",
+                                                  style: TextStyle(
+                                                      fontFamily: 'Louis George Cafe',
+                                                      fontSize: 12,
+                                                      color: task.taskType.color
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
+                                      ],
                                     ],
                                   ),
                                 ],

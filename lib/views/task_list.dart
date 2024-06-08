@@ -5,7 +5,10 @@ import 'package:valor_impact/themes/theme.dart';
 import 'package:valor_impact/views/profile.dart';
 import 'package:provider/provider.dart';
 
+import '../blocs/assigned_to_cubit.dart';
+import '../blocs/user_cubit.dart';
 import '../enums/role_enum.dart';
+import '../models/assigned_to.dart';
 import '../models/task.dart';
 import '../providers/user_provider.dart';
 
@@ -21,6 +24,9 @@ class _TaskList extends State<TaskList> {
   Widget build(BuildContext context) {
     final selectedRole =
         Provider.of<UserProvider>(context, listen: false).selectedRole;
+    final assignedToCubit = context.read<AssignedToCubit>();
+    final currentUser = context.read<UserCubit>().currentUser;
+    final List<AssignedTo> assignedToList = assignedToCubit.getUnfinishedTasksByUser(currentUser!.idUser);
     return Scaffold(
       body: Column(
         children: [

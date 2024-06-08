@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valor_impact/blocs/assigned_to_cubit.dart';
 import 'package:valor_impact/blocs/task_cubit.dart';
+import 'package:valor_impact/models/assigned_to.dart';
 import 'package:valor_impact/themes/theme.dart';
 import 'package:valor_impact/views/add_task.dart';
 import 'package:valor_impact/views/profile.dart';
 import 'package:provider/provider.dart';
 
+import '../blocs/user_cubit.dart';
 import '../enums/role_enum.dart';
 import '../models/task.dart';
 import '../providers/user_provider.dart';
@@ -22,6 +25,9 @@ class _Welcome extends State<Welcome> {
   Widget build(BuildContext context) {
     final selectedRole =
         Provider.of<UserProvider>(context, listen: false).selectedRole;
+    final assignedToCubit = context.read<AssignedToCubit>();
+    final currentUser = context.read<UserCubit>().currentUser;
+    final taskCubit = context.read<TaskCubit>();
     return Scaffold(
       body: Column(
         children: [
@@ -181,14 +187,15 @@ class _Welcome extends State<Welcome> {
                       style: AppStyles.textStyleTitre24,
                     ),
                   ),
-                  BlocBuilder<TaskCubit, List<Task>>(
+                  BlocBuilder<AssignedToCubit, List<AssignedTo>>(
                     builder: (context, state) {
+                      final List<AssignedTo> taskList = assignedToCubit.getUnfinishedTasksByUser(currentUser!.idUser);
                       return ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: state.length,
+                        itemCount: taskList.length,
                         itemBuilder: (BuildContext context, int index) {
-                          final Task task = state[index];
+                          final Task? task = taskCubit.getTaskById(taskList[index].idTask);
                           return Container(
                               margin: const EdgeInsets.all(20.0),
                               width: 390,
@@ -196,7 +203,7 @@ class _Welcome extends State<Welcome> {
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.white, width: 3),
                                 borderRadius: BorderRadius.circular(20.0),
-                                color: task.taskType.color,
+                                color: task?.taskType.color,
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -206,13 +213,13 @@ class _Welcome extends State<Welcome> {
                                     children: [
                                       SizedBox(
                                         width: 250,
-                                        child: Text(task.taskDescription, style: AppStyles.textStyleBase16,),
+                                        child: Text(task!.taskDescription, style: AppStyles.textStyleBase16,),
                                       ),
                                       Container(
                                         padding: const EdgeInsets.all(10.0),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(10.0),
-                                          color: task.taskType.subColor,
+                                          color: task?.taskType.subColor,
                                         ),
                                         child: Row(
                                           children: [

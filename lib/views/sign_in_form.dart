@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valor_impact/ui/screens/home.dart';
 
+import '../blocs/user_cubit.dart';
 import '../enums/role_enum.dart';
 import '../themes/theme.dart';
 
@@ -15,10 +17,13 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInForm extends State<SignInForm> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
+    final userCubit = context.read<UserCubit>();
     return Scaffold(
       body: Stack(
         children: [
@@ -167,13 +172,24 @@ class _SignInForm extends State<SignInForm> {
           Positioned(
             top: MediaQuery.of(context).size.height * 0.8,
             left: MediaQuery.of(context).size.width * 0.5 - 115,
-            child: ElevatedButton(onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const Home()),
-              );
-            }, child: Text("Créer un compte", style: AppStyles.textStyleBaseViolet)),
-          )
+            child: ElevatedButton(
+              onPressed: () {
+                final username = _usernameController.text;
+                final password = _passwordController.text;
+                final role = widget.role;
+
+                // Call createUser method from UserCubit
+                userCubit.createUser(username, password, role);
+
+                // Navigate to Home screen
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Home()),
+                );
+              },
+              child: Text("Créer un compte", style: AppStyles.textStyleBaseViolet),
+            ),
+          ),
 
           ]
         )

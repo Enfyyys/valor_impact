@@ -31,4 +31,18 @@ class UserCubit extends Cubit<List<User>> {
     _currentUser = null;
     emit([...state]);
   }
+
+  void createUser(String username, String password, RoleEnum role/*, double moneyCount, int idTeam*/) {
+    final newUser = User(
+      idUser: state.length + 1, // You can adjust the logic for generating user IDs as needed
+      username: username,
+      password: password,
+      role: role,
+      moneyCount: 0,
+      idTeam: 1,
+    );
+    _currentUser = newUser;
+    state.add(newUser);
+    emit([...state]);
+  }
 }

@@ -15,8 +15,8 @@ class AssignedTo {
     return {
       'id_user': idUser,
       'id_task': idTask,
-      'assigned_date': assignedDate,
-      'is_finished': isFinished,
+      'assigned_date': assignedDate.toIso8601String(),
+      'is_finished': isFinished ? 1 : 0, // Convertir le booléen en entier
     };
   }
 }

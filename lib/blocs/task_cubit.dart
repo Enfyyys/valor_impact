@@ -39,4 +39,50 @@ class TaskCubit extends Cubit<List<Task>> {
     return state;
   }
 
+  Future<void> completeTask(int taskId) async {
+    // Vous pouvez marquer la tâche comme terminée dans la base de données ici
+    final db = DatabaseProvider.getDatabase();
+
+    await db.update(
+      'tasks',
+      {'end_date': DateTime.now().toIso8601String()}, // Mettez à jour la date de fin de la tâche
+      where: 'id_task = ?',
+      whereArgs: [taskId],
+    );
+
+    // Mettez à jour l'état local du cubit pour refléter le changement
+    final updatedTasks = state.map((task) {
+      if (task.idTask == taskId) {
+        return Task(
+          idTask: task.idTask,
+          taskDescription: task.taskDescription,
+          moneyWorth: task.moneyWorth,
+          taskType: task.taskType,
+          startDate: task.startDate,
+          endDate: DateTime.now(), // Mettez à jour la date de fin
+        );
+      } else {
+        return task;
+      }
+    }).toList();
+
+    emit(updatedTasks);
+  }
+
+  Task? getTaskById(int taskId) {
+    return state.firstWhere((task) => task.idTask == taskId);
+  }
+
+  void updateTask(Task updatedTask) {
+    final List<Task> updatedTasks = state.map((task) {
+      if (task.idTask == updatedTask.idTask) {
+        return updatedTask; // Remplace la tâche existante par la nouvelle tâche mise à jour
+      } else {
+        return task;
+      }
+    }).toList();
+
+    emit(updatedTasks);
+  }
+
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valor_impact/views/add_task.dart';
 import 'package:valor_impact/views/benefit_list.dart';
 import 'package:valor_impact/views/profile.dart';
 import 'package:valor_impact/views/task_list.dart';
@@ -19,7 +20,7 @@ class _Home extends State<Home> {
   final List _screens = [
     {"screen": const Welcome()},
     {"screen": const BenefitList()},
-    {"screen": const TaskList()},
+    {"screen": const AddTask()},
     {"screen": const Profile()},
   ];
 

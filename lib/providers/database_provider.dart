@@ -38,7 +38,7 @@ class DatabaseProvider {
                 'id_user INTEGER, '
                 'id_task INTEGER, '
                 'assigned_date TEXT, '
-                'is_finished BOOLEAN, '
+                'is_finished INTEGER, ' //INTEGER AU LIEU DE BOOLEAN CAR PAS RECONNU PAR SQFLITE
                 'PRIMARY KEY(id_user, id_task), '
                 'FOREIGN KEY(id_user) REFERENCES users(id_user), '
                 'FOREIGN KEY(id_task) REFERENCES tasks(id_task)); '
