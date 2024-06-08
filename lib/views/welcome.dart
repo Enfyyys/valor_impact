@@ -27,6 +27,7 @@ class _Welcome extends State<Welcome> {
         Provider.of<UserProvider>(context, listen: false).selectedRole;
     final assignedToCubit = context.read<AssignedToCubit>();
     final currentUser = context.read<UserCubit>().currentUser;
+    final userCubit = context.read<UserCubit>();
     final taskCubit = context.read<TaskCubit>();
     return Scaffold(
       body: Column(
@@ -241,11 +242,19 @@ class _Welcome extends State<Welcome> {
                                           borderRadius: BorderRadius.circular(20.0),
                                           color: task.taskType.subColor,
                                         ),
-                                        child: Row(
-                                          children: [
-                                            Image.asset('assets/images/monnaie.png', scale: 1.5,),
-                                            Text(task.moneyWorth.toString(), style: AppStyles.textStyleBase16,),
-                                          ],
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            assignedToCubit.finishAssignedTo(currentUser.idUser, task.idTask);
+                                            print(currentUser.moneyCount);
+                                            userCubit.addMoneyToUser(currentUser.idUser, task.moneyWorth);
+                                            print(currentUser.moneyCount);
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Image.asset('assets/images/monnaie.png', scale: 1.5,),
+                                              Text(task.moneyWorth.toString(), style: AppStyles.textStyleBase16,),
+                                            ],
+                                          ),
                                         ),
                                       )
                                     ],

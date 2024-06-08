@@ -10,7 +10,7 @@ class UserCubit extends Cubit<List<User>> {
   Future<void> loadUsers() async {
     emit(
         [
-          const User(idUser: 1, username: 'Éric', password: 'password', role: RoleEnum.employe, moneyCount: 15.0, idTeam: 1),
+          const User(idUser: 1, username: 'Éric', password: 'password', role: RoleEnum.employe, moneyCount: 1500.0, idTeam: 1),
           const User(idUser: 2, username: 'Jean', password: 'password', role: RoleEnum.responsable, moneyCount: 30.0, idTeam: 1)
         ]
     );
@@ -44,5 +44,17 @@ class UserCubit extends Cubit<List<User>> {
     _currentUser = newUser;
     state.add(newUser);
     emit([...state]);
+  }
+
+  void addMoneyToUser(int userId, double money) {
+    final updatedUsers = state.map((user) {
+      if (user.idUser == userId) {
+        return user.copyWith(moneyCount: user.moneyCount + money);
+      }
+      return user;
+    }).toList();
+    emit(updatedUsers);
+
+    _currentUser = updatedUsers.firstWhere((user) => user.idUser == userId);
   }
 }

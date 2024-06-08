@@ -24,4 +24,20 @@ class Benefit {
       'benefit_type': benefitType,
     };
   }
+
+  Benefit copyWith({
+    int? idBenefit,
+    String? benefitDescription,
+    double? moneyCost,
+    String? imageUrl,
+    BenefitTypeEnum? benefitType,
+  }) {
+    return Benefit(
+      idBenefit: idBenefit ?? this.idBenefit,
+      benefitDescription: benefitDescription ?? this.benefitDescription,
+      moneyCost: moneyCost ?? this.moneyCost,
+      imageUrl: imageUrl ?? this.imageUrl,
+      benefitType: benefitType ?? this.benefitType,
+    );
+  }
 }

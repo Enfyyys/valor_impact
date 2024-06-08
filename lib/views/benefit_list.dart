@@ -4,6 +4,7 @@ import 'package:valor_impact/enums/task_type_enum.dart';
 import 'package:valor_impact/themes/theme.dart';
 
 import '../blocs/benefit_cubit.dart';
+import '../blocs/user_cubit.dart';
 import '../models/benefit.dart';
 import '../ui/screens/home.dart';
 
@@ -17,6 +18,8 @@ class BenefitList extends StatefulWidget {
 class _BenefitList extends State<BenefitList> {
   @override
   Widget build(BuildContext context) {
+    final userCubit = context.read<UserCubit>();
+    final benefitCubit = context.read<BenefitCubit>();
     return Scaffold(
       body: Column(
         children: [
@@ -62,7 +65,7 @@ class _BenefitList extends State<BenefitList> {
                     children: [
                       Image.asset('assets/images/monnaie.png', scale: 0.9,),
                       Text("Quantité de monnaie gagnée", style: AppStyles.textStyleBase12,),
-                      Text("500", style: AppStyles.textStyleTitre24,)
+                      Text(userCubit.currentUser!.moneyCount.toString(), style: AppStyles.textStyleTitre24,)
                     ],
                   ),
                   const SizedBox(height: 20,),
@@ -164,7 +167,10 @@ class _BenefitList extends State<BenefitList> {
                                               borderRadius: BorderRadius.circular(8.0),
                                             ),
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            userCubit.addMoneyToUser(userCubit.currentUser!.idUser, -benefit.moneyCost);
+                                            setState(() {});
+                                          },
                                           child: Row(
                                             children: [
                                               Icon(Icons.add, color: TaskTypeEnum.economie.color, size: 33.0,),

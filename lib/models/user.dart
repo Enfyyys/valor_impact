@@ -27,4 +27,22 @@ class User {
       'id_team': idTeam,
     };
   }
+
+  User copyWith({
+    int? idUser,
+    String? username,
+    String? password,
+    RoleEnum? role,
+    double? moneyCount,
+    int? idTeam,
+  }) {
+    return User(
+      idUser: idUser ?? this.idUser,
+      username: username ?? this.username,
+      password: password ?? this.password,
+      role: role ?? this.role,
+      moneyCount: moneyCount ?? this.moneyCount,
+      idTeam: idTeam ?? this.idTeam,
+    );
+  }
 }

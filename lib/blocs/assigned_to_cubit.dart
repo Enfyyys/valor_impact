@@ -71,4 +71,20 @@ class AssignedToCubit extends Cubit<List<AssignedTo>> {
     }
     return(listTask);
   }
+
+  Future<void> finishAssignedTo(int userId, int taskId) async {
+    List<AssignedTo> updatedList = state.map((assignedTo) {
+      if (assignedTo.idUser == userId && assignedTo.idTask == taskId) {
+        return AssignedTo(
+          idUser: assignedTo.idUser,
+          idTask: assignedTo.idTask,
+          assignedDate: assignedTo.assignedDate,
+          isFinished: true,
+        );
+      }
+      return assignedTo;
+    }).toList();
+
+    emit(updatedList);
+  }
 }
