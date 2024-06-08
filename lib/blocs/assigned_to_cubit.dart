@@ -9,7 +9,7 @@ import '../models/task.dart';
 class AssignedToCubit extends Cubit<List<AssignedTo>> {
 
   final List<Task> tasks;
-  final Database _database = DatabaseProvider.getDatabase();
+  //final Database _database = DatabaseProvider.getDatabase();
 
   AssignedToCubit({required this.tasks}) : super([]);
 

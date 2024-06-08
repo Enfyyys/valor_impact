@@ -41,14 +41,14 @@ class TaskCubit extends Cubit<List<Task>> {
 
   Future<void> completeTask(int taskId) async {
     // Vous pouvez marquer la tâche comme terminée dans la base de données ici
-    final db = DatabaseProvider.getDatabase();
+    /*final db = DatabaseProvider.getDatabase();
 
     await db.update(
       'tasks',
       {'end_date': DateTime.now().toIso8601String()}, // Mettez à jour la date de fin de la tâche
       where: 'id_task = ?',
       whereArgs: [taskId],
-    );
+    );*/
 
     // Mettez à jour l'état local du cubit pour refléter le changement
     final updatedTasks = state.map((task) {

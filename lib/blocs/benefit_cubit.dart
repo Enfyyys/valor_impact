@@ -8,7 +8,7 @@ import '../providers/database_provider.dart';
 class BenefitCubit extends Cubit<List<Benefit>> {
 
   BenefitCubit() : super([]);
-  final Database _database = DatabaseProvider.getDatabase();
+  //final Database _database = DatabaseProvider.getDatabase();
 
   Future<void> loadBenefits() async {
     emit(const [
@@ -19,15 +19,15 @@ class BenefitCubit extends Cubit<List<Benefit>> {
   }
 
   Future<void> addBenefit(Benefit benefit) async {
-    await _database.insert(
+    /*await _database.insert(
       'benefits',
       benefit.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    );*/
     emit([...state, benefit]);
   }
 
-  Future<void> buyReward(int userId, Benefit benefit) async {
+  /*Future<void> buyReward(int userId, Benefit benefit) async {
     // Fetch user money balance
     final List<Map<String, dynamic>> user = await _database.query(
       'users',
@@ -61,5 +61,5 @@ class BenefitCubit extends Cubit<List<Benefit>> {
       // Handle insufficient funds or user not found
       throw Exception('Insufficient funds or user not found');
     }
-  }
+  }*/
 }
