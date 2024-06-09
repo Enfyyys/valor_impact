@@ -5,6 +5,7 @@ import 'package:valor_impact/blocs/task_cubit.dart';
 import 'package:valor_impact/models/assigned_to.dart';
 import 'package:valor_impact/themes/theme.dart';
 import 'package:valor_impact/views/add_task.dart';
+import 'package:valor_impact/views/online_chat.dart';
 import 'package:valor_impact/views/profile.dart';
 import 'package:provider/provider.dart';
 
@@ -180,6 +181,42 @@ class _Welcome extends State<Welcome> {
                         ),
                       ],
                     ),
+                  ),
+                  const SizedBox(height: 20,),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const OnlineChat()),
+                        );
+                      },
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10.0),
+                            bottomRight: Radius.circular(10.0),
+                          ),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'Votre conseiller',
+                              style: AppStyles.textStyleBaseViolet16,
+                            ),
+                            const SizedBox(width: 8),
+                            const Icon(
+                              Icons.message,
+                              color: Color(0xff8E3DFF),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),

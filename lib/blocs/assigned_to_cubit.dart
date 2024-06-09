@@ -15,8 +15,8 @@ class AssignedToCubit extends Cubit<List<AssignedTo>> {
 
   Future<void> loadAssignedTo() async {
     emit([
-      AssignedTo(idUser: 1, idTask: 1, assignedDate: DateTime.utc(1989, 11, 9), isFinished: true),
-      AssignedTo(idUser: 1, idTask: 2, assignedDate: DateTime.utc(1989, 11, 9), isFinished: true),
+      AssignedTo(idUser: 1, idTask: 1, assignedDate: DateTime.utc(1989, 11, 9), isFinished: false),
+      AssignedTo(idUser: 1, idTask: 2, assignedDate: DateTime.utc(1989, 11, 9), isFinished: false),
       AssignedTo(idUser: 1, idTask: 3, assignedDate: DateTime.utc(1989, 11, 9), isFinished: true),
     ]);
   }
