@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:valor_impact/views/add_task.dart';
 import 'package:valor_impact/views/benefit_list.dart';
 import 'package:valor_impact/views/profile.dart';
-import 'package:valor_impact/views/task_list.dart';
 import 'package:valor_impact/views/welcome.dart';
 
 class Home extends StatefulWidget {

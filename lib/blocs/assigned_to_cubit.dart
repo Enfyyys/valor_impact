@@ -1,7 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:valor_impact/enums/task_type_enum.dart';
-import 'package:valor_impact/providers/database_provider.dart';
 
 import '../models/assigned_to.dart';
 import '../models/task.dart';

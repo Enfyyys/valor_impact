@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:valor_impact/enums/role_enum.dart';
 import '../models/user.dart';
+import '../providers/database_provider.dart';
 
 class UserCubit extends Cubit<List<User>> {
   User? _currentUser;
@@ -34,7 +36,7 @@ class UserCubit extends Cubit<List<User>> {
 
   void createUser(String username, String password, RoleEnum role/*, double moneyCount, int idTeam*/) {
     final newUser = User(
-      idUser: state.length + 1, // You can adjust the logic for generating user IDs as needed
+      idUser: state.length + 1,
       username: username,
       password: password,
       role: role,
@@ -57,4 +59,31 @@ class UserCubit extends Cubit<List<User>> {
 
     _currentUser = updatedUsers.firstWhere((user) => user.idUser == userId);
   }
+
+  /*Future<void> addMoneyToUserDatabase(int userId, double money) async {
+    final Database db = DatabaseProvider.getDatabase();
+
+    // On récupère l'utilisateur
+    final List<Map<String, dynamic>> maps = await db.query(
+      'users',
+      where: 'id_user = ?',
+      whereArgs: [userId],
+    );
+
+    if (maps.isNotEmpty) {
+      // On met à jour l'argent de l'utilisateur
+      final user = User.fromMap(maps.first);
+      final newMoneyCount = user.moneyCount + money;
+
+      await db.update(
+        'users',
+        {'money_count': newMoneyCount},
+        where: 'id_user = ?',
+        whereArgs: [userId],
+      );
+    } else {
+      // Erreur si l'utilisateur n'est pas trouvé
+      throw Exception('User not found');
+    }
+  }*/
 }

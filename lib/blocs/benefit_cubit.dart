@@ -27,16 +27,19 @@ class BenefitCubit extends Cubit<List<Benefit>> {
     emit([...state, benefit]);
   }
 
+  removeBenefit(int idBenefit) {}
+
   /*Future<void> buyReward(int userId, Benefit benefit) async {
-    // Fetch user money balance
+    // On récupère l'utilisateur dans la bdd
     final List<Map<String, dynamic>> user = await _database.query(
       'users',
       where: 'id_user = ?',
       whereArgs: [userId],
     );
 
+    // Si l'utilisateur à plus d'argent que le cout de la récompense
     if (user.isNotEmpty && user.first['money_count'] >= benefit.moneyCost) {
-      // Deduct the cost from the user's balance
+      // Déduit le cout de la récompense à l'argent de l'utilisateur
       final double newBalance = user.first['money_count'] - benefit.moneyCost;
       await _database.update(
         'users',
@@ -45,7 +48,7 @@ class BenefitCubit extends Cubit<List<Benefit>> {
         whereArgs: [userId],
       );
 
-      // Insert into buyed table
+      // Insertion dans la table buyed
       await _database.insert(
         'buyed',
         {
@@ -55,11 +58,9 @@ class BenefitCubit extends Cubit<List<Benefit>> {
         },
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
-
-      // Emit updated state if necessary (e.g., to update UI)
     } else {
-      // Handle insufficient funds or user not found
-      throw Exception('Insufficient funds or user not found');
+      // Erreur si l'utilisateur n'a pas assez d'argent
+      throw Exception('Pas assez d\'argent');
     }
   }*/
 }
