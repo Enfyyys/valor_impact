@@ -16,6 +16,9 @@ class AssignedToCubit extends Cubit<List<AssignedTo>> {
       AssignedTo(idUser: 1, idTask: 1, assignedDate: DateTime.utc(1989, 11, 9), isFinished: false),
       AssignedTo(idUser: 1, idTask: 2, assignedDate: DateTime.utc(1989, 11, 9), isFinished: false),
       AssignedTo(idUser: 1, idTask: 3, assignedDate: DateTime.utc(1989, 11, 9), isFinished: true),
+      AssignedTo(idUser: 2, idTask: 1, assignedDate: DateTime.utc(1989, 11, 9), isFinished: false),
+      AssignedTo(idUser: 2, idTask: 2, assignedDate: DateTime.utc(1989, 11, 9), isFinished: false),
+      AssignedTo(idUser: 2, idTask: 3, assignedDate: DateTime.utc(1989, 11, 9), isFinished: true),
     ]);
   }
 

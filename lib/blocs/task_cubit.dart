@@ -14,9 +14,9 @@ class TaskCubit extends Cubit<List<Task>> {
 
     emit(
       [
-        Task(idTask: 1, taskDescription: "Organiser une journée de bénévolat pour les employés avec au moins 50 % de participation.", moneyWorth: 50.0, taskType: TaskTypeEnum.societe, startDate: DateTime.utc(1989, 11, 9), endDate:DateTime.utc(2089, 11, 9)),
-        Task(idTask: 2, taskDescription: "Réaliser au moins 70 % des achats auprès de fournisseurs locaux ou certifiés équitables.", moneyWorth: 50.0, taskType: TaskTypeEnum.economie, startDate: DateTime.utc(1989, 11, 9), endDate:DateTime.utc(2089, 11, 9)),
-        Task(idTask: 3, taskDescription: "Atteindre un taux de recyclage minimum de 60 % pour les déchets produits par l'entreprise.", moneyWorth: 50.0, taskType: TaskTypeEnum.environnement, startDate: DateTime.utc(1989, 11, 9), endDate:DateTime.utc(2089, 11, 9)),
+        Task(idTask: 1, taskDescription: "Organiser une journée de bénévolat pour les employés avec au moins 50 % de participation.", moneyWorth: 50.0, taskType: TaskTypeEnum.societe, startDate: DateTime.utc(1989, 11, 9), endDate:DateTime.utc(2024, 11, 9)),
+        Task(idTask: 2, taskDescription: "Réaliser au moins 70 % des achats auprès de fournisseurs locaux ou certifiés équitables.", moneyWorth: 50.0, taskType: TaskTypeEnum.economie, startDate: DateTime.utc(1989, 11, 9), endDate:DateTime.utc(2024, 7, 7)),
+        Task(idTask: 3, taskDescription: "Atteindre un taux de recyclage minimum de 60 % pour les déchets produits par l'entreprise.", moneyWorth: 50.0, taskType: TaskTypeEnum.environnement, startDate: DateTime.utc(1989, 11, 9), endDate:DateTime.utc(2024, 10, 10)),
         /*for (final taskMap in tasksMap)
           Task(
             idTask: taskMap['id_task'],

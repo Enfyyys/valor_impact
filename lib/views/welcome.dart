@@ -109,7 +109,7 @@ class _Welcome extends State<Welcome> {
                             Image.asset('assets/images/taches.png'),
                             const SizedBox(height: 10),
                             Text(
-                              "Nombre total de tâches : 28",
+                              "Nombre total de tâches : ${taskCubit.getTasks().length}",
                               style: AppStyles.textStyleBase16,
                             ),
                           ],
@@ -130,7 +130,7 @@ class _Welcome extends State<Welcome> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Nombre de tâches \n complétées: 18",
+                                    "Nombre de tâches \n complétées: ${assignedToCubit.getFinishedTasksByUser(currentUser!.idUser).length}",
                                     style: AppStyles.textStyleBase8,
                                   ),
                                   const SizedBox(width: 10),
@@ -151,7 +151,7 @@ class _Welcome extends State<Welcome> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Nombre de tâches \n en attentes: 10",
+                                    "Nombre de tâches \n en attentes: ${assignedToCubit.getUnfinishedTasksByUser(currentUser.idUser).length}",
                                     style: AppStyles.textStyleBase8,
                                   ),
                                   const SizedBox(width: 10),

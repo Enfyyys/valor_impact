@@ -41,15 +41,6 @@ class _BenefitList extends State<BenefitList> {
                     );
                   },
                 ),
-                IconButton(
-                  icon: const Icon(Icons.settings, color: Colors.white, size: 33.0,),
-                  onPressed: () {
-                    /*Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Profile()),
-                    );*/
-                  },
-                ),
               ],
             ),
           ),

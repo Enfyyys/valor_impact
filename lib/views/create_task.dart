@@ -84,19 +84,6 @@ class _CreateTask extends State<CreateTask> {
                       );
                     },
                   ),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.settings,
-                      color: Colors.white,
-                      size: 33.0,
-                    ),
-                    onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => const Profile()),
-                      // );
-                    },
-                  ),
                 ],
               ),
             ),
